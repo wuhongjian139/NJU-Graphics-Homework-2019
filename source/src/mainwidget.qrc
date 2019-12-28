@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/qt_zh_CN.qm</file>
+        <file>Resources/anchor.png</file>
+    </qresource>
+</RCC>
