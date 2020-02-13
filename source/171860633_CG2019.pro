@@ -33,3 +33,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += src/mainwidget.qrc
+
+TARGET = exe_file
+
+DESTDIR = $${PWD}/../binary
