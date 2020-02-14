@@ -34,6 +34,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += src/mainwidget.qrc
 
-TARGET = exe_file
+TARGET = index
 
 DESTDIR = $${PWD}/../binary

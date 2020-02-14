@@ -17,22 +17,22 @@ int main(int argc, char* argv[]) {
 		}
 		return 0;
 	}
-	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-	QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-	QApplication::setOrganizationName(QObject::tr("南京大学计算机科学与技术系"));
-	QApplication::setApplicationVersion(QObject::tr("版本-2019年12月"));
-	QApplication::setApplicationName(QObject::tr("图形学课程作业_171860633_徐国栋"));
-	QApplication app(argc, argv);
-	QTranslator translator;
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    QApplication::setOrganizationName(QObject::tr("NJU CS"));
+    QApplication::setApplicationVersion(QObject::tr("v2019.12"));
+    QApplication::setApplicationName(QObject::tr("CG2019_171860633_JellyXu"));
+    QApplication app(argc, argv);
+    /*	QTranslator translator;
 	if (translator.load(":/Resources/qt_zh_CN.qm"))
 		app.installTranslator(&translator);
 	else {
 		return throwErrorBox("Error Message", "Fail to load(\":/Resources/qt_zh_CN.qm\")!");
-	}
-	ScribbleArea w;
-	w.resize(getDesktopSize() / 1.5);
-	w.show();
-	return app.exec();
+	}*/
+    ScribbleArea w;
+    w.resize(getDesktopSize() / 1.5);
+    w.show();
+    return app.exec();
 }
 
 /*

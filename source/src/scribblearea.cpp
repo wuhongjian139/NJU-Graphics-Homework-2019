@@ -28,7 +28,7 @@ Iscohen_sutherland(false), justDbClicked(false), curShape(nullptr) {
 		btns.push_back(new QToolButton(this));
 		btns.at(i)->setStyleSheet(QString("QToolButton{border:2px groove gray;border-radius:10px;padding:2px 4px;background-color: rgb(242, 252, 252)}""QToolButton:hover{border:4px groove gray;border-radius:10px;padding:2px 4px;background-color: rgb(242, 252, 252)}""QToolButton:pressed{border:5px groove gray;border-radius:10px;padding:2px 4px;background-color: rgb(242, 252, 252)}"));
 	}
-	resetbtn = btns.at(11); resetbtn->setText("重置");
+	resetbtn = btns.at(11); resetbtn->setText("reset");
 	connect(resetbtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
@@ -40,7 +40,7 @@ Iscohen_sutherland(false), justDbClicked(false), curShape(nullptr) {
 			update();
 		}
 	);
-	colorbtn = btns.at(10);  colorbtn->setText("换色");
+	colorbtn = btns.at(10);  colorbtn->setText("color");
 	connect(colorbtn, &QToolButton::clicked, this, [=]() {colordialog.show(); });
 	connect(
 		&colordialog, &QColorDialog::colorSelected,
@@ -54,7 +54,7 @@ Iscohen_sutherland(false), justDbClicked(false), curShape(nullptr) {
 		}
 	);
 	colordialog.colorSelected(Qt::black);
-	savebtn = btns.at(9); savebtn->setText("保存");
+	savebtn = btns.at(9); savebtn->setText("save");
 	filedialog.setModal(true);//  要求模态对话框
 	connect(
 		savebtn, &QToolButton::clicked,
@@ -71,7 +71,7 @@ Iscohen_sutherland(false), justDbClicked(false), curShape(nullptr) {
 			imgBuffer.save(saveName);
 		}
 	);
-	algoBtn = btns.at(8); algoBtn->setText("算法");
+	algoBtn = btns.at(8); algoBtn->setText("algorithm");
 	QToolButton* bresenham = new QToolButton(&algoWidget),
 		* dda = new QToolButton(&algoWidget),
 		* bezier = new QToolButton(&algoWidget),
@@ -84,12 +84,12 @@ Iscohen_sutherland(false), justDbClicked(false), curShape(nullptr) {
 	bspline->setText("bspline"); bspline->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 	cohen_sutherland->setText("cohen_sutherland"); cohen_sutherland->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 	liang_barsky->setText("liang_barsky"); liang_barsky->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	connect(bresenham, &QToolButton::clicked, this, [=]() {Isdda = false; throwErrorBox("信息", "选择成功！"); });
-	connect(dda, &QToolButton::clicked, this, [=]() {Isdda = true; throwErrorBox("信息", "选择成功！"); });
-	connect(bezier, &QToolButton::clicked, this, [=]() {Isbezier = true; throwErrorBox("信息", "选择成功！"); });
-	connect(bspline, &QToolButton::clicked, this, [=]() {Isbezier = false; throwErrorBox("信息", "选择成功！"); });
-	connect(liang_barsky, &QToolButton::clicked, this, [=]() {Iscohen_sutherland = false; throwErrorBox("信息", "选择成功！"); });
-	connect(cohen_sutherland, &QToolButton::clicked, this, [=]() {Iscohen_sutherland = true; throwErrorBox("信息", "选择成功！"); });
+	connect(bresenham, &QToolButton::clicked, this, [=]() {Isdda = false; throwErrorBox("message", "success!"); });
+	connect(dda, &QToolButton::clicked, this, [=]() {Isdda = true; throwErrorBox("message", "success!"); });
+	connect(bezier, &QToolButton::clicked, this, [=]() {Isbezier = true; throwErrorBox("message", "success!"); });
+	connect(bspline, &QToolButton::clicked, this, [=]() {Isbezier = false; throwErrorBox("message", "success!"); });
+	connect(liang_barsky, &QToolButton::clicked, this, [=]() {Iscohen_sutherland = false; throwErrorBox("message", "success!"); });
+	connect(cohen_sutherland, &QToolButton::clicked, this, [=]() {Iscohen_sutherland = true; throwErrorBox("message", "success!"); });
 	QGridLayout* l = new QGridLayout(&algoWidget);
 	for (int i = 0; i < 2; i++)
 		l->setRowStretch(i, 1);
@@ -104,77 +104,77 @@ Iscohen_sutherland(false), justDbClicked(false), curShape(nullptr) {
 			algoWidget.show();
 		}
 	);
-	linebtn = btns.at(0);  linebtn->setText("线段");
+	linebtn = btns.at(0);  linebtn->setText("line");
 	connect(linebtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = line;
-			info = "直线绘制，按下鼠标左键、拖曳以继续";
+			info = "line mode: press and drag";
 		}
 	);
-	curvebtn = btns.at(3);  curvebtn->setText("曲线");
+	curvebtn = btns.at(3);  curvebtn->setText("curve");
 	connect(curvebtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = curve;
-			info = "曲线绘制，左键*双击*以继续，右键*双击*以结束";
+			info = "curve mode: double click left buttom to continue, right to end";
 		}
 	);
-	ellipsebtn = btns.at(1); ellipsebtn->setText("椭圆");
+	ellipsebtn = btns.at(1); ellipsebtn->setText("ellipse");
 	connect(ellipsebtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = ellipse;
-			info = "椭圆绘制，按下鼠标左键、拖曳以继续";
+			info = "ellipse mode: press and drag";
 		}
 	);
-	polygonbtn = btns.at(2); polygonbtn->setText("多边形");
+	polygonbtn = btns.at(2); polygonbtn->setText("polygon");
 	connect(polygonbtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = polygon;
-			info = "多边形绘制，左键*双击*以继续，右键*双击*以结束";
+			info = "polygon mode: double click left buttom to continue, right to end";
 		}
 	);
-	transbtn = btns.at(4);  transbtn->setText("平移");
+	transbtn = btns.at(4);  transbtn->setText("translate");
 	connect(transbtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			setCursor(Qt::OpenHandCursor);
 			mouseState = trans;
-			info = "图元平移，在图元上按下鼠标左键，拖曳鼠标以继续";
+			info = "translate mode: press and drag";
 		}
 	);
-	rotatebtn = btns.at(5);  rotatebtn->setText("旋转锚");
+	rotatebtn = btns.at(5);  rotatebtn->setText("rotate");
 	connect(rotatebtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = rotate;
 			prepareAnchor = true;
 			setCursor(QCursor(ANCHORPIX, 0, 20));
-			info = "图元旋转，单击放下旋转中心锚点，点击一下目标图元，转动鼠标滚轮以继续";
+			info = "rotate mode: put, click and zoom";
 		}
 	);
-	scalebtn = btns.at(6);  scalebtn->setText("缩放锚");
+	scalebtn = btns.at(6);  scalebtn->setText("scale");
 	connect(scalebtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = scale;
 			prepareAnchor = true;
 			setCursor(QCursor(ANCHORPIX, 0, 20));
-			info = "图元缩放，单击放下缩放中心锚点，点击一下目标图元，转动鼠标滚轮以继续";
+			info = "scale mode: put, click and zoom";
 		}
 	);
-	clipbtn = btns.at(7); clipbtn->setText("裁剪");
+	clipbtn = btns.at(7); clipbtn->setText("cut");
 	connect(clipbtn, &QToolButton::clicked, this,
 		[=]() {
 			clsFlag();
 			mouseState = clip;
-			info = "直线裁剪";
+			info = "line edit";
 		}
 	);
 
-	statusBar()->showMessage("就绪");
+	statusBar()->showMessage("ready");
 	linebtn->click();
 	setMouseTracking(true);
 }
@@ -267,7 +267,7 @@ void ScribbleArea::closeEvent(QCloseEvent* event) {
 }
 
 void ScribbleArea::clsFlag() {
-	if ((mouseState == rotate || mouseState == scale) && curShape != nullptr && curShape->_ctrlp.size() > 0) {//  保存记录，只存一次，因为有误差累积
+	if ((mouseState == rotate || mouseState == scale) && curShape != nullptr && curShape->_ctrlp.size() > 0) {//  save记录，只存一次，因为有误差累积
 		curShape->_ctrlp.resize(curShape->ctrlp.size());
 		curShape->_ctrlp.assign(curShape->ctrlp.begin(), curShape->ctrlp.end());
 		//curShape->_ctrlp.clear();
@@ -389,7 +389,7 @@ void ScribbleArea::mousePressEvent(QMouseEvent* event) {
 }
 
 void ScribbleArea::mouseMoveEvent(QMouseEvent* event) {
-	statusBar()->showMessage(QString("【当前状态：%3】【当前鼠标位置：(%1,%2)】").arg(event->pos().x()).arg(event->pos().y()).arg(info));
+	statusBar()->showMessage(QString("[state: %3][pos: (%1,%2)]").arg(event->pos().x()).arg(event->pos().y()).arg(info));
 	curPos = event->pos();
 	if (!isDragging) {
 		return QMainWindow::mouseMoveEvent(event);
@@ -586,8 +586,8 @@ void ScribbleArea::mouseDoubleClickEvent(QMouseEvent* event) {
 					curShape->aType = curShape->bspline;
 				curShape->color = color;
 			}
-			//  这里原来直接push了两次，对多边形而言看不出影响
-			//  但是对于曲线来说，控制点数量直接影响到最终结果
+			//  这里原来直接push了两次，对polygon而言看不出影响
+			//  但是对于curve来说，控制点数量直接影响到最终结果
 			//  真是一个隐蔽的错误
 			if (isFirstDbPoint) { //  需要多一个控制点来做实时索引
 				curShape->ctrlp.push_back(curPos); isFirstDbPoint = false;
